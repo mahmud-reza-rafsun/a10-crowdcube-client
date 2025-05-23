@@ -18,9 +18,13 @@ const Navbar = () => {
                     <ul className="menu menu-horizontal px-1">
                         <li><Link to="/">Home</Link></li>
                         <li><Link to="all-campaign">All Campaign</Link></li>
-                        <li><Link to="add-new-campaign">Add New Campaign</Link></li>
-                        <li><Link to="my-campaign">My Campaign</Link></li>
-                        <li><Link to="my-donations">My Donations</Link></li>
+                        {
+                            user && <>
+                                <li><Link to="add-new-campaign">Add New Campaign</Link></li>
+                                <li><Link to="my-campaign">My Campaign</Link></li>
+                                <li><Link to="my-donations">My Donations</Link></li>
+                            </>
+                        }
                     </ul>
                 </div>
                 <div className="navbar-end gap-2 lg:gap-4">
@@ -69,9 +73,13 @@ const Navbar = () => {
                                 className="menu menu-sm dropdown-content bg-base-100 absolute right-0 rounded-box z-[1] mt-3 w-52 p-2 shadow">
                                 <li><Link to="/">Home</Link></li>
                                 <li><Link to="all-campaign">All Campaign</Link></li>
-                                <li><Link to="add-new-campaign">Add New Campaign</Link></li>
-                                <li><Link to="my-campaign">My Campaign</Link></li>
-                                <li><Link to="my-donations">My Donations</Link></li>
+                                {
+                                    user && <>
+                                        <li><Link to="add-new-campaign">Add New Campaign</Link></li>
+                                        <li><Link to="my-campaign">My Campaign</Link></li>
+                                        <li><Link to="my-donations">My Donations</Link></li>
+                                    </>
+                                }
                             </ul>
                         </div>
                     </div>

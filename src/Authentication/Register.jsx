@@ -17,9 +17,9 @@ const Register = () => {
         // create user
         createUserWithEmail(email, password)
             .then(result => {
+                manageProfile(name, photo)
                 alert('success')
                 console.log(result.user);
-                manageProfile(name, photo)
             })
             .catch(error => {
                 console.log(error.message);
