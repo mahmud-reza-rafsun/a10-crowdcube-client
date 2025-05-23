@@ -10,7 +10,7 @@ const AddNewCampaign = () => {
         const description = form.description.value;
         const ammount = form.ammount.value;
         const data = { title, photo, type, description, ammount };
-        fetch('http://localhost:5000/products', {
+        fetch('http://localhost:5000/campaign', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -77,6 +77,7 @@ const AddNewCampaign = () => {
                             type="number"
                             placeholder="e.g. 100"
                             className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            required
                         />
                     </div>
                     <button

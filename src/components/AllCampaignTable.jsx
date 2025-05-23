@@ -1,3 +1,5 @@
+import { FaUserEdit } from "react-icons/fa";
+
 const AllCampaignTable = ({ table }) => {
     const { _id, title, photo, type, ammount, description } = table;
     return (
@@ -8,7 +10,7 @@ const AllCampaignTable = ({ table }) => {
                         <div className="mask mask-squircle h-12 w-12">
                             <img
                                 src={photo}
-                                alt="Avatar Tailwind CSS Component" />
+                                alt={title} />
                         </div>
                     </div>
                     <div>
@@ -22,7 +24,7 @@ const AllCampaignTable = ({ table }) => {
             </td>
             <td>{description}</td>
             <td>{ammount}</td>
-            <td><button className="btn btn-error btn-sm text-white">X</button></td>
+            <td><button className="btn btn-error btn-sm text-white"><FaUserEdit /></button></td>
         </tr>
     );
 };

@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink, } from "react-router-dom";
 import { AuthContext } from "../AuthProvider/AuthProvider";
 
 const Navbar = () => {
@@ -16,13 +16,13 @@ const Navbar = () => {
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
-                        <li><Link to="/">Home</Link></li>
-                        <li><Link to="all-campaign">All Campaign</Link></li>
+                        <li><NavLink to="/">Home</NavLink></li>
+                        <li><NavLink to="all-campaign">All Campaign</NavLink></li>
                         {
                             user && <>
-                                <li><Link to="add-new-campaign">Add New Campaign</Link></li>
-                                <li><Link to="my-campaign">My Campaign</Link></li>
-                                <li><Link to="my-donations">My Donations</Link></li>
+                                <li><NavLink to="add-new-campaign">Add New Campaign</NavLink></li>
+                                <li><NavLink to="my-campaign">My Campaign</NavLink></li>
+                                <li><NavLink to="my-donations">My Donations</NavLink></li>
                             </>
                         }
                     </ul>
@@ -44,12 +44,12 @@ const Navbar = () => {
                             </>
                             :
                             <>
-                                <Link to="/login">
+                                <NavLink to="/login">
                                     <button className="btn">Login</button>
-                                </Link>
-                                <Link to="/register">
+                                </NavLink>
+                                <NavLink to="/register">
                                     <button className="btn">Register</button>
-                                </Link>
+                                </NavLink>
                             </>
                     }
                     <div>
@@ -71,13 +71,13 @@ const Navbar = () => {
                             <ul
                                 tabIndex={0}
                                 className="menu menu-sm dropdown-content bg-base-100 absolute right-0 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-                                <li><Link to="/">Home</Link></li>
-                                <li><Link to="all-campaign">All Campaign</Link></li>
+                                <li><NavLink to="/">Home</NavLink></li>
+                                <li><NavLink to="all-campaign">All Campaign</NavLink></li>
                                 {
                                     user && <>
-                                        <li><Link to="add-new-campaign">Add New Campaign</Link></li>
-                                        <li><Link to="my-campaign">My Campaign</Link></li>
-                                        <li><Link to="my-donations">My Donations</Link></li>
+                                        <li><NavLink to="add-new-campaign">Add New Campaign</NavLink></li>
+                                        <li><NavLink to="my-campaign">My Campaign</NavLink></li>
+                                        <li><NavLink to="my-donations">My Donations</NavLink></li>
                                     </>
                                 }
                             </ul>

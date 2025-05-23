@@ -16,7 +16,7 @@ const CampaignCard = ({ product }) => {
                 <p>Type: {type}</p>
                 <p>Ammount: {ammount}</p>
                 <div className="card-actions justify-center">
-                    <Link to={`/products/${_id}`}>
+                    <Link to={`/campaign/${_id}`}>
                         <button className="btn btn-accent ">See Details</button>
                     </Link>
                 </div>

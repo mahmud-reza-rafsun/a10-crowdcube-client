@@ -15,7 +15,7 @@ const router = createBrowserRouter([
             {
                 path: '/',
                 element: <Home />,
-                loader: () => fetch('http://localhost:5000/products')
+                loader: () => fetch('http://localhost:5000/campaign')
             },
             {
                 path: '/login',
@@ -30,14 +30,14 @@ const router = createBrowserRouter([
                 element: <AddNewCampaign />
             },
             {
-                path: '/products/:id',
+                path: '/campaign/:id',
                 element: <CampaignCardDetails />,
-                loader: ({ params }) => fetch(`http://localhost:5000/products/${params.id}`)
+                loader: ({ params }) => fetch(`http://localhost:5000/campaign/${params.id}`)
             },
             {
                 path: '/all-campaign',
                 element: <AllCampaign />,
-                loader: () => fetch('http://localhost:5000/products')
+                loader: () => fetch('http://localhost:5000/campaign')
             }
         ]
     }

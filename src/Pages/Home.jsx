@@ -1,10 +1,10 @@
 import { useLoaderData } from "react-router-dom";
 import Banner from "../components/Banner";
 import CampaignCard from "../components/CampaignCard";
+import FeedBack from "../components/FeedBack";
 
 const Home = () => {
     const loadedData = useLoaderData();
-    console.log(loadedData);
     return (
         <div>
             <Banner />
@@ -18,6 +18,7 @@ const Home = () => {
                     }
                 </div>
             </div>
+            <FeedBack />
         </div>
     );
 };
