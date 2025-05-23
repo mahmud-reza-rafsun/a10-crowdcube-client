@@ -3,6 +3,7 @@ import Root from "../Layout/Root";
 import Home from "../Pages/Home";
 import Login from "../Authentication/Login";
 import Register from "../Authentication/Register";
+import AddNewCampaign from "../Pages/AddNewCampaign";
 
 const router = createBrowserRouter([
     {
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
             {
                 path: '/register',
                 element: <Register />
+            },
+            {
+                path: '/add-new-campaign',
+                element: <AddNewCampaign />
             }
         ]
     }
