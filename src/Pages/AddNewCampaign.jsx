@@ -10,7 +10,7 @@ const AddNewCampaign = () => {
         const description = form.description.value;
         const ammount = form.ammount.value;
         const data = { title, photo, type, description, ammount };
-        fetch('http://localhost:5000/campaign', {
+        fetch('https://a10-crowdcube-server.vercel.app/campaign', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

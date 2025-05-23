@@ -6,6 +6,7 @@ import Register from "../Authentication/Register";
 import AddNewCampaign from "../Pages/AddNewCampaign";
 import CampaignCardDetails from "../components/CampaignCardDetails";
 import AllCampaign from "../Pages/AllCampaign";
+import PrivetRoute from "../PrivetRoute/PrivetRoute";
 
 const router = createBrowserRouter([
     {
@@ -15,7 +16,7 @@ const router = createBrowserRouter([
             {
                 path: '/',
                 element: <Home />,
-                loader: () => fetch('http://localhost:5000/campaign')
+                loader: () => fetch('https://a10-crowdcube-server.vercel.app/campaign')
             },
             {
                 path: '/login',
@@ -31,13 +32,15 @@ const router = createBrowserRouter([
             },
             {
                 path: '/campaign/:id',
-                element: <CampaignCardDetails />,
-                loader: ({ params }) => fetch(`http://localhost:5000/campaign/${params.id}`)
+                element: <PrivetRoute>
+                    <CampaignCardDetails />
+                </PrivetRoute>,
+                loader: ({ params }) => fetch(`https://a10-crowdcube-server.vercel.app/${params.id}`)
             },
             {
                 path: '/all-campaign',
                 element: <AllCampaign />,
-                loader: () => fetch('http://localhost:5000/campaign')
+                loader: () => fetch('https://a10-crowdcube-server.vercel.app/campaign')
             }
         ]
     }

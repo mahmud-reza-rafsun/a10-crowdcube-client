@@ -1,7 +1,7 @@
 import { FaUserEdit } from "react-icons/fa";
 
 const AllCampaignTable = ({ table }) => {
-    const { _id, title, photo, type, ammount, description } = table;
+    const { title, photo, type, ammount, description } = table;
     return (
         <tr>
             <td>
