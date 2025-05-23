@@ -1,3 +1,5 @@
+import Swal from "sweetalert2";
+
 const AddNewCampaign = () => {
     const handleAddNewCampaign = (e) => {
         e.preventDefault();
@@ -17,7 +19,13 @@ const AddNewCampaign = () => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
+                if (data.insertedId) {
+                    Swal.fire({
+                        title: "Successfully Add",
+                        icon: "success",
+                        draggable: true
+                    });
+                }
             })
     }
     return (
