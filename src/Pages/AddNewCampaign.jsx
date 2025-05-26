@@ -1,6 +1,9 @@
+import { useContext } from "react";
 import Swal from "sweetalert2";
+import { AuthContext } from "../AuthProvider/AuthProvider";
 
 const AddNewCampaign = () => {
+    const { user } = useContext(AuthContext);
     const handleAddNewCampaign = (e) => {
         e.preventDefault();
         const form = e.target;
@@ -9,8 +12,9 @@ const AddNewCampaign = () => {
         const type = form.type.value;
         const description = form.description.value;
         const ammount = form.ammount.value;
-        const data = { title, photo, type, description, ammount };
-        fetch('https://a10-crowdcube-server.vercel.app/campaign', {
+        const userEmail = e.target.userEmail.value;
+        const data = { title, photo, type, description, userEmail, ammount };
+        fetch('http://localhost:5000/campaign', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -67,6 +71,17 @@ const AddNewCampaign = () => {
                             name="description"
                             rows="4"
                             placeholder="Write something about your campaign..."
+                            className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        />
+                    </div>
+                    <div>
+                        <label className="block mb-1 font-medium text-gray-700">User Email</label>
+                        <input
+                            defaultValue={user?.email}
+                            name="userEmail"
+                            type="text"
+                            readOnly
+                            placeholder="User Email"
                             className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
                     </div>
