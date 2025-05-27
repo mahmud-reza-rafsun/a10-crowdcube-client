@@ -1,6 +1,7 @@
 import { FaUserEdit } from "react-icons/fa";
 import { GoTrash } from "react-icons/go";
 import Swal from "sweetalert2";
+import Modal from "./Modal";
 
 const MyCampaignTable = ({ table, data, setData }) => {
     const { _id, title, photo, type, ammount, description } = table;
@@ -56,8 +57,9 @@ const MyCampaignTable = ({ table, data, setData }) => {
             </td>
             <td>{description}</td>
             <td>{ammount}</td>
-            <td><button className="btn btn-error btn-sm text-white"><FaUserEdit /></button></td>
+            <td><button className="btn btn-error btn-sm text-white" onClick={() => document.getElementById('my_modal_3').showModal()}><FaUserEdit /></button></td>
             <td><button onClick={() => handleDelete(_id)} className="btn btn-error btn-sm text-white"><GoTrash /></button></td>
+            <Modal />
         </tr>
     );
 };
