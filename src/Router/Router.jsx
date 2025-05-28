@@ -8,6 +8,7 @@ import CampaignCardDetails from "../components/CampaignCardDetails";
 import AllCampaign from "../Pages/AllCampaign";
 import PrivetRoute from "../PrivetRoute/PrivetRoute";
 import MyCampaign from "../Pages/MyCampaign";
+import MyDonation from "../Pages/MyDonation";
 
 const router = createBrowserRouter([
     {
@@ -56,6 +57,11 @@ const router = createBrowserRouter([
                     return resData, singeData;
                 }
             },
+            {
+                path: '/my-donations',
+                element: <MyDonation />,
+                loader: () => fetch('http://localhost:5000/campaign')
+            }
         ]
     }
 ])
