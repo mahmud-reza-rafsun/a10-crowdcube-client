@@ -3,7 +3,7 @@ import { GoTrash } from "react-icons/go";
 import Swal from "sweetalert2";
 import Modal from "./Modal";
 
-const MyCampaignTable = ({ table, data, setData }) => {
+const MyCampaignTable = ({ table, data, setData, singleData }) => {
     const { _id, title, photo, type, ammount, description } = table;
     const handleDelete = (id) => {
         Swal.fire({
@@ -59,7 +59,7 @@ const MyCampaignTable = ({ table, data, setData }) => {
             <td>{ammount}</td>
             <td><button className="btn btn-error btn-sm text-white" onClick={() => document.getElementById('my_modal_3').showModal()}><FaUserEdit /></button></td>
             <td><button onClick={() => handleDelete(_id)} className="btn btn-error btn-sm text-white"><GoTrash /></button></td>
-            <Modal />
+            <Modal singleData={singleData} />
         </tr>
     );
 };

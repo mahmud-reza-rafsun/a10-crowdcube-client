@@ -4,6 +4,7 @@ import MyCampaignTable from "../components/MyCampaignTable";
 
 const MyCampaign = () => {
     const loadedData = useLoaderData();
+    const singleData = useLoaderData();
     const [data, setData] = useState(loadedData)
 
     console.log(data);
@@ -22,7 +23,7 @@ const MyCampaign = () => {
                 </thead>
                 <tbody>
                     {
-                        data.map((table) => <MyCampaignTable data={data} setData={setData} table={table} key={table?._id} />)
+                        data.map((table) => <MyCampaignTable singleData={singleData} data={data} setData={setData} table={table} key={table?._id} />)
                     }
                 </tbody>
             </table>
