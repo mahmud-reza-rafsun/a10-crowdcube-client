@@ -8,7 +8,7 @@ const Modal = ({ singleData }) => {
         const description = e.target.description.value;
         const ammount = e.target.ammount.value;
         const user = { _id, title, photo, type, description, ammount }
-        fetch(`http://localhost:5000/campaign/${_id}`, {
+        fetch(`https://a10-crowdcube-server.vercel.app/campaign/${_id}`, {
             method: "PUT",
             headers: {
                 'content-type': 'application/json'

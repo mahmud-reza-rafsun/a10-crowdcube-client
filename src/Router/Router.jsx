@@ -18,7 +18,7 @@ const router = createBrowserRouter([
             {
                 path: '/',
                 element: <Home />,
-                loader: () => fetch('http://localhost:5000/campaign')
+                loader: () => fetch('https://a10-crowdcube-server.vercel.app/campaign')
             },
             {
                 path: '/login',
@@ -37,21 +37,21 @@ const router = createBrowserRouter([
                 element: <PrivetRoute>
                     <CampaignCardDetails />
                 </PrivetRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/${params.id}`)
+                loader: ({ params }) => fetch(`https://a10-crowdcube-server.vercel.app/${params.id}`)
             },
             {
                 path: '/all-campaign',
                 element: <AllCampaign />,
-                loader: () => fetch('http://localhost:5000/campaign')
+                loader: () => fetch('https://a10-crowdcube-server.vercel.app/campaign')
             },
             {
                 path: '/my-campaign',
                 element: <MyCampaign />,
                 loader: async () => {
-                    const data = await fetch('http://localhost:5000/campaign');
+                    const data = await fetch('https://a10-crowdcube-server.vercel.app/campaign');
                     const resData = await data.json();
 
-                    const defaultData = await fetch('http://localhost:5000/campaign');
+                    const defaultData = await fetch('https://a10-crowdcube-server.vercel.app/campaign');
                     const singeData = await defaultData.json();
 
                     return resData, singeData;
@@ -60,7 +60,7 @@ const router = createBrowserRouter([
             {
                 path: '/my-donations',
                 element: <MyDonation />,
-                loader: () => fetch('http://localhost:5000/campaign')
+                loader: () => fetch('https://a10-crowdcube-server.vercel.app/campaign')
             }
         ]
     }
