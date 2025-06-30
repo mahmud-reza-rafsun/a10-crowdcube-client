@@ -1,28 +1,33 @@
 import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider/AuthProvider";
+import toast from "react-hot-toast";
 
 const Navbar = () => {
     const { user, signOutUser } = useContext(AuthContext);
     const links = <>
         <li><NavLink to="/">Home</NavLink></li>
         <li><NavLink to="/all-campaign">All Campaign</NavLink></li>
-        <li><NavLink to="/add-new-campaign">Add New Campaign</NavLink></li>
-        <li><NavLink to="/my-campaign">My Campaign</NavLink></li>
-        <li><NavLink to="/my-donations">My Donations</NavLink></li>
+        {
+            user && <>
+                <li><NavLink to="/addCampaign">Add New Campaign</NavLink></li>
+                <li><NavLink to="/my-campaign">My Campaign</NavLink></li>
+                <li><NavLink to="/my-donations">My Donations</NavLink></li>
+            </>
+        }
     </>
     const handleSignOut = () => {
         signOutUser()
-        .then((result) => {
-            console.log(result.user);
-        })
-        .catch((err) => {
-            console.log(err.message);
-        })
+            .then(() => {
+                toast.success('Logout Successfull')
+            })
+            .catch((err) => {
+                toast.error(err.message)
+            })
     }
     return (
-        <div className="bg-base-100 shadow-sm">
-           <div className="navbar max-w-6xl mx-auto ">
+        <div className="bg-base-100 shadow-sm sticky top-0 z-50">
+            <div className="navbar max-w-6xl mx-auto ">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -49,7 +54,7 @@ const Navbar = () => {
                                     <div className="w-24 rounded-full">
                                         <img
                                             // alt="Tailwind CSS Navbar component"
-                                            src={user?.photoURL ? user?.photoURL : 'https://files.catbox.moe/ts4hmy.jpg'}  className="w-24"/>
+                                            src={user?.photoURL ? user?.photoURL : 'https://files.catbox.moe/ts4hmy.jpg'} className="w-24" />
                                     </div>
                                 </div>
                             </div>
