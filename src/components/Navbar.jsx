@@ -3,7 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider/AuthProvider";
 
 const Navbar = () => {
-    const { user } = useContext(AuthContext);
+    const { user, signOutUser } = useContext(AuthContext);
     const links = <>
         <li><NavLink to="/">Home</NavLink></li>
         <li><NavLink to="/all-campaign">All Campaign</NavLink></li>
@@ -11,9 +11,18 @@ const Navbar = () => {
         <li><NavLink to="/my-campaign">My Campaign</NavLink></li>
         <li><NavLink to="/my-donations">My Donations</NavLink></li>
     </>
+    const handleSignOut = () => {
+        signOutUser()
+        .then((result) => {
+            console.log(result.user);
+        })
+        .catch((err) => {
+            console.log(err.message);
+        })
+    }
     return (
         <div className="bg-base-100 shadow-sm">
-            <div className="navbar max-w-6xl mx-auto ">
+           <div className="navbar max-w-6xl mx-auto ">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -25,7 +34,7 @@ const Navbar = () => {
                             {links}
                         </ul>
                     </div>
-                    <a className="btn btn-ghost text-xl">daisyUI</a>
+                    <Link to="/" className="btn btn-ghost text-xl">Crowdcube</Link>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
@@ -39,17 +48,18 @@ const Navbar = () => {
                                 <div className="btn btn-ghost btn-circle avatar">
                                     <div className="w-24 rounded-full">
                                         <img
-                                            alt="Tailwind CSS Navbar component"
-                                            src={user ? user?.photoURL : 'https://files.catbox.moe/ts4hmy.jpg'}  className="w-24"/>
+                                            // alt="Tailwind CSS Navbar component"
+                                            src={user?.photoURL ? user?.photoURL : 'https://files.catbox.moe/ts4hmy.jpg'}  className="w-24"/>
                                     </div>
                                 </div>
                             </div>
-                            <button className="btn btn-error text-white">Sign Out</button>
+                            <button onClick={handleSignOut} className="btn btn-error text-white">Sign Out</button>
                         </div >
                             :
-                            <>
-                                <Link to="/sign-in" className="btn">Sign In</Link>
-                            </>
+                            <div className="flex gap-3">
+                                <Link to="/sign-in" className="btn bg-indigo-500 text-white">Sign In</Link>
+                                <Link to="/register" className="btn btn-success text-white">Register</Link>
+                            </div>
                     }
                 </div>
             </div >

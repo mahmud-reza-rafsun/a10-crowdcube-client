@@ -1,35 +1,75 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../../provider/AuthProvider/AuthProvider";
 import { Link } from "react-router-dom";
+import { IoEye } from "react-icons/io5";
+import { IoEyeOff } from "react-icons/io5";
+import toast from 'react-hot-toast'
 
 const Register = () => {
-    const {createUserWithGoogle} = useContext(AuthContext);
+    const { createUserWithGoogle, createUserWithEmail } = useContext(AuthContext);
+    const [showPassword, setShowPassword] = useState(false);
     const handleRegister = (e) => {
         e.preventDefault();
         const form = e.target;
+        const name = form.name.value;
+        const photo = form.photo.value;
         const email = form.email.value;
         const password = form.password.value;
-        console.log(email, password);
+        console.log(name, photo, email, password);
+
+        const regEx = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
+        if (!regEx.test(password)) {
+            toast.error('Password must be 6-16 characters long, include at least one number and one special character.')
+        }
+
+        // create user
+        createUserWithEmail(email, password)
+            .then(() => {
+                toast.success('Register Successfull')
+            })
+            .catch((err) => {
+                toast.error(err.message)
+            })
     }
-    const handleGoogleSingIn = () =>{
+    const handleGoogleSingIn = () => {
         createUserWithGoogle()
-        .then((result) => {
-            console.log(result.user);
-        })
-        .catch((err) => {
-            console.log(err.message);
-        })
+            .then((result) => {
+                console.log(result.user);
+                toast.success('Register Successfull')
+            })
+            .catch((err) => {
+                console.log(err.message);
+            })
     }
     return (
         <div className="hero bg-base-200 min-h-[80vh] rounded-md">
-            <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
+            <div className="card bg-base-100 w-full max-w-lg shrink-0 shadow-2xl">
                 <h1 className="text-3xl text-center pt-6 font-bold">Register</h1>
                 <div className="card-body">
                     <form onSubmit={handleRegister} className="fieldset">
-                        <label className="label">Email</label>
-                        <input type="email" name="email" className="input w-full" placeholder="Email" />
-                        <label className="label">Password</label>
-                        <input type="password" name="password" className="input w-full" placeholder="Password" />
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label className="label">Name</label>
+                                <input type="text" name="name" className="input w-full" placeholder="Name" />
+                            </div>
+                            <div>
+                                <label className="label">Photo URL</label>
+                                <input type="url" name="photo" className="input w-full" placeholder="Photo URL" />
+                            </div>
+                            <div>
+                                <label className="label">Email</label>
+                                <input type="email" name="email" className="input w-full" placeholder="Email" />
+                            </div>
+                            <div>
+                                <label className="label">Password</label>
+                                <input type={showPassword ? "password" : "text"} name="password" className="input w-full" placeholder="Password" />
+                                <div onClick={() => setShowPassword(!showPassword)} className="btn btn-xs absolute top-[190px] right-10">
+                                    {
+                                        showPassword ? <IoEye /> : <IoEyeOff />
+                                    }
+                                </div>
+                            </div>
+                        </div>
                         <button className="btn btn-success text-amber-100 mt-4">Register</button>
                     </form>
                     <button onClick={handleGoogleSingIn} className="btn bg-white text-black border-[#e5e5e5]">
