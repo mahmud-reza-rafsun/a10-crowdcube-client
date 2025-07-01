@@ -49,7 +49,7 @@ const Navbar = () => {
                                     </div>
                                 </div>
                             </div>
-                            <button onClick={handleSignOut} className="btn-sm btn lg:btn btn-error hidden lg:flex text-white">Sign Out</button>
+                            <button onClick={handleSignOut} className="btn btn-error text-white hidden lg:flex">Sign Out</button>
                         </div >
                             :
                             <div className="hidden lg:flex gap-3">
