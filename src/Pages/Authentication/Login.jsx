@@ -1,12 +1,14 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../../provider/AuthProvider/AuthProvider";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { IoEye, IoEyeOff } from "react-icons/io5";
 import toast from "react-hot-toast";
 
 const Login = () => {
     const { createUserWithGoogle, signInUserWithEmail } = useContext(AuthContext);
     const [showPassword, setShowPassword] = useState(false);
+    const navigate = useNavigate();
+    const from = location.state || "/";
     const handleSignIn = (e) => {
         e.preventDefault();
         const form = e.target;
@@ -22,6 +24,7 @@ const Login = () => {
         signInUserWithEmail(email, password)
             .then(() => {
                 toast.success('Sign In Successfull')
+                navigate(from);
             })
             .catch((err) => {
                 toast.error(err.message)

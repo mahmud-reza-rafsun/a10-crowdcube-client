@@ -7,11 +7,11 @@ const Navbar = () => {
     const { user, signOutUser } = useContext(AuthContext);
     const links = <>
         <li><NavLink to="/">Home</NavLink></li>
-        <li><NavLink to="/all-campaign">All Campaign</NavLink></li>
+        <li><NavLink to="/all-campaigns">All Campaign</NavLink></li>
         {
             user && <>
                 <li><NavLink to="/addCampaign">Add New Campaign</NavLink></li>
-                <li><NavLink to="/my-campaign">My Campaign</NavLink></li>
+                <li><NavLink to="/myCampaign">My Campaign</NavLink></li>
                 <li><NavLink to="/my-donations">My Donations</NavLink></li>
             </>
         }

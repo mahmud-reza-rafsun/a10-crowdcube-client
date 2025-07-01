@@ -5,6 +5,10 @@ import Login from "../Pages/Authentication/Login";
 import Register from "../Pages/Authentication/Register";
 import AddNewCampaign from "../Pages/AddNewCampaign";
 import PrivetRouter from "../PrivetRouter/PrivetRouter";
+import AllCampaign from "../Pages/AllCampaign";
+import AllCampaignCard from "../components/AllCampaignCard";
+import MyCampaign from "../Pages/MyCampaign";
+import MyCampaignUpdate from "../components/MyCampaignUpdate";
 
 const router = createBrowserRouter([
     {
@@ -27,6 +31,30 @@ const router = createBrowserRouter([
                 path: '/addCampaign',
                 element: <PrivetRouter>
                     <AddNewCampaign/>
+                </PrivetRouter>
+            },
+            {
+                path: '/all-campaigns',
+                element: <PrivetRouter>
+                    <AllCampaign/>
+                </PrivetRouter>
+            },
+            {
+                path: '/campaign/:id',
+                element: <PrivetRouter>
+                    <AllCampaignCard/>
+                </PrivetRouter>
+            },
+            {
+                path: '/myCampaign',
+                element: <PrivetRouter>
+                    <MyCampaign/>
+                </PrivetRouter>
+            },
+            {
+                path: '/myCampaign/:id',
+                element: <PrivetRouter>
+                    <MyCampaignUpdate/>
                 </PrivetRouter>
             }
         ]
