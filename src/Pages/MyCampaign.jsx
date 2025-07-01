@@ -60,6 +60,7 @@ const MyCampaign = () => {
                     <tr>
                         <th></th>
                         <th>Title</th>
+                        <th>Type</th>
                         <th>Ammount</th>
                         <th>Description</th>
                         <th>Action</th>
@@ -70,6 +71,7 @@ const MyCampaign = () => {
                         campaign.map((camp, idx) => <tr key={camp?._id}>
                             <th>{idx + 1}</th>
                             <td>{camp?.title}</td>
+                            <td>{camp?.type}</td>
                             <td>{camp?.ammount}</td>
                             <td>{camp?.description.substring(0, 18)}...</td>
                             <td className="flex gap-3">

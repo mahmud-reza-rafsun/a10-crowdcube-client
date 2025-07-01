@@ -9,6 +9,7 @@ import AllCampaign from "../Pages/AllCampaign";
 import AllCampaignCard from "../components/AllCampaignCard";
 import MyCampaign from "../Pages/MyCampaign";
 import MyCampaignUpdate from "../components/MyCampaignUpdate";
+import MyDonations from "../Pages/MyDonations";
 
 const router = createBrowserRouter([
     {
@@ -56,6 +57,10 @@ const router = createBrowserRouter([
                 element: <PrivetRouter>
                     <MyCampaignUpdate/>
                 </PrivetRouter>
+            },
+            {
+                path: '/myDonations',
+                element: <MyDonations/>
             }
         ]
     }
