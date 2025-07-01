@@ -19,7 +19,7 @@ const MyCampaignUpdate = () => {
             setCampaign(data);
             
         } catch (error) {
-            console.log(error);
+            toast.error(error)
         }
     }
     console.log(campaign);
@@ -34,12 +34,11 @@ const MyCampaignUpdate = () => {
         const formData = {title, photo, type, ammount, description}
         
         try{
-            const {data} = await axios.put(`${import.meta.env.VITE_API_URL}/addCampaign/${id}`, formData)
-            console.log(data);
+            await axios.put(`${import.meta.env.VITE_API_URL}/addCampaign/${id}`, formData)
             toast.success('Data Updated')
             navigate('/myCampaign')
         }catch(error){
-            console.log(error);
+            toast.error(error)
         }
 
     }

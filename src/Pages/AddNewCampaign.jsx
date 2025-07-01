@@ -2,9 +2,11 @@ import { useContext } from "react";
 import { AuthContext } from "../provider/AuthProvider/AuthProvider";
 import axios from 'axios'
 import toast from 'react-hot-toast'
+import { useNavigate } from "react-router-dom";
 
 const AddNewCampaign = () => {
     const {user} = useContext(AuthContext);
+    const navigate = useNavigate();
     const handleSubmit = async (e) => {
         e.preventDefault();
         const form = e.target;
@@ -18,9 +20,10 @@ const AddNewCampaign = () => {
 
         try{
             await axios.post(`${import.meta.env.VITE_API_URL}/addCampaign`, formData);
-            toast.success('Data add Successfull')
+            toast.success('Data add Successfull');
+            navigate('/all-campaigns');
         }catch(error){
-            toast.error(error);
+            toast.error(error.message);
         }
     }
     return (

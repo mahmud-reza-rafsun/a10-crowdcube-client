@@ -6,6 +6,7 @@ import { GoTrash } from "react-icons/go";
 import { LiaUserEditSolid } from "react-icons/lia";
 import Swal from 'sweetalert2'
 import { Link } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const MyCampaign = () => {
     const { user } = useContext(AuthContext);
@@ -17,10 +18,9 @@ const MyCampaign = () => {
         try {
             const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/all-campaign/${user?.email}`)
             setCampaign(data);
-            console.log(campaign);
 
         } catch (error) {
-            console.log(error);
+            toast.error(error)
         }
     }
     const handleDelete = (id) => {

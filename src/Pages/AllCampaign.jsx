@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import axios from "axios";
 import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 
 const AllCampaign = () => {
@@ -12,10 +13,9 @@ const AllCampaign = () => {
         try {
             const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/all-campaign`)
             setCampaign(data);
-            console.log(campaign);
 
         } catch (error) {
-            console.log(error);
+            toast.error(error.message)
         }
     }
     console.log(campaign);
@@ -44,7 +44,7 @@ const AllCampaign = () => {
                             <td>${card?.ammount}</td>
                             <td>{card?.description.substring(0, 18)}...</td>
                             <td>
-                                <Link to={`/campaign/${card?._id}`}>See More</Link>
+                                <Link className="btn btn-xs btn-success text-white" to={`/campaign/${card?._id}`}>See More</Link>
                             </td>
                         </tr>)
                         }

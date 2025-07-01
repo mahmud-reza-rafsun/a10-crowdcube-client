@@ -21,20 +21,21 @@ const AllCampaignCard = () => {
             console.log(error);
         }
     }
+    console.log(campaign);
     const handleDonate = async (e) => {
         e.preventDefault();
         const form = e.target;
+        const title = form.title.value;
         const name = form.name.value;
         const email = form.email.value;
         const ammount = form.ammount.value;
-        const donationData = {name, email, ammount};
+        const donationData = {title, name, email, ammount};
         
         try{
-            const {data} =  await axios.post(`${import.meta.env.VITE_API_URL}/donation`, donationData);
-            console.log(data);
+            await axios.post(`${import.meta.env.VITE_API_URL}/donation`, donationData);
             toast.success('Donation Successfull!!!')
         }catch(error){
-            console.log(error);
+            toast.error(error.message)
         }
     }
     return (
@@ -52,9 +53,10 @@ const AllCampaignCard = () => {
                         <div className="card w-full max-w-lg shrink-0 shadow-2xl">
                             <div className="card-body">
                                 <form onSubmit={handleDonate} className="fieldset space-y-3">
+                                    <input defaultValue={campaign?.title} name="title" type="text" className="input border-amber-50 bg-transparent" placeholder="Name" />
+                                    <input defaultValue={campaign?.ammount} name="ammount" type="number" className="input border-amber-50 bg-transparent" placeholder="Ammount" />
                                     <input defaultValue={user?.displayName} name="name" disabled={true} type="text" className="input border-amber-50 bg-transparent" placeholder="Name" />
                                     <input defaultValue={user?.email} disabled={true} type="email" className="input border-amber-50 bg-transparent" name="email" placeholder="Email" />
-                                    <input defaultValue={campaign?.ammount} name="ammount" type="number" className="input border-amber-50 bg-transparent" placeholder="Ammount" />
                                     <button className="btn bg-indigo-500 border-none shadow-none text-white mt-4">Donate</button>
                                 </form>
                             </div>
